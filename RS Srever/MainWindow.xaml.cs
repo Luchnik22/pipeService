@@ -11,11 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Net;
-using System.Net.Sockets;
 
 using System.Drawing;
-using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
@@ -26,37 +24,63 @@ namespace RS_Srever
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {        
+        private UdpClient udpClient;
+        private const UInt16 udpSize = 65507;
+        private const UInt16 controlBlockSize = 5;                
         private delegate void AsynkWorker();
+        private delegate void DrawEvent(BitmapImage bitmapImage);
+        private delegate void Invoke(byte[] data);
+        private Decoder decoder = new Decoder();
+        private UInt16 port;
 
         public MainWindow()
         {
             InitializeComponent();
+            decoder.FrameReady += new Decoder.EventReady(decoder_FrameReady);
             new AsynkWorker(Run).BeginInvoke(null, null);
+        }
+
+        void decoder_FrameReady(BitmapImage img)
+        {
+            this.Background = new ImageBrush(img);
+        }
+
+        void MainWindow_Invoke(byte[] data)
+        {
+            try
+            {
+                decoder.addPacked(data);
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private void Run()
         {
-            UdpClient udp = new UdpClient(new IPEndPoint(IPAddress.Any, 34000));
-            var ep = new IPEndPoint(IPAddress.None, 0);
-            var mass = udp.Receive(ref ep);
+            using (StreamReader SR = new StreamReader("port.txt"))
+            {
+                port = UInt16.Parse(SR.ReadLine());
+            }
 
-            PixelFormat pf = PixelFormats.Bgr32;
-            int width = 200;
-            int height = 200;
-            int rawStride = (width * pf.BitsPerPixel + 7) / 8;
-            byte[] rawImage = new byte[rawStride * height];
+            UdpClient udp = new UdpClient(new IPEndPoint(IPAddress.Any, port));
+            IPEndPoint ep = new IPEndPoint(IPAddress.None, 0);
 
-            // Initialize the image with data.
-            Random value = new Random();
-            value.NextBytes(rawImage);
+            while (true)
+            {
+                byte[] mass = udp.Receive(ref ep);
+                Dispatcher.Invoke(new Invoke(MainWindow_Invoke), mass);
+            }
 
-            // Create a BitmapSource.
-            BitmapSource bitmap = BitmapSource.Create(width, height,
-                96, 96, pf, null,
-                rawImage, rawStride);
-            
-            this.Background = new ImageBrush(bitmap);
+            /* byte[] test = new byte[5];
+            test[0] = 1;
+            test[1] = 2;
+            test[2] = 3;
+            test[3] = 4;
+            test[4] = 5;
+
+            decoder.addPacked(test); */            
         }
     }
 }

@@ -11,7 +11,7 @@ namespace RS_Clinet
         static void Main()
         {
             Sender sender = new Sender();
-            //sender.Run();
+            sender.Run();
 
         }
     }

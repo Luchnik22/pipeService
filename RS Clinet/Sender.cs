@@ -33,18 +33,7 @@ namespace RS_Clinet
             }
 
             width = Screen.PrimaryScreen.Bounds.Width;
-            height = Screen.PrimaryScreen.Bounds.Height;
-
-            /*byte[] bytes = new byte[150000];
-            new Random().NextBytes(bytes);
-
-            List<byte[]> data = Package(bytes);
-
-            udpClient = new UdpClient();
-            foreach (var block in data)
-            {
-                udpClient.Send(block, block.Length, ipEndPoint);    
-            }*/
+            height = Screen.PrimaryScreen.Bounds.Height;            
         }
 
         public void Run()
@@ -64,7 +53,9 @@ namespace RS_Clinet
                 foreach (var block in data)
                 {
                     udpClient.Send(block, block.Length, ipEndPoint);
-                }         
+                    //System.Threading.Thread.Sleep(100);
+                }
+                //return;
             }
         }
 
@@ -74,28 +65,6 @@ namespace RS_Clinet
             MemoryStream memoryStream = new MemoryStream();
             bmp.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Jpeg);
             return memoryStream.ToArray();
-        }
-
-        private List<byte[]> CutMsg(byte[] bt)
-        {
-            int Lenght = bt.Length;
-            byte[] temp;
-            List<byte[]> msg = new List<byte[]>();
-
-            MemoryStream memoryStream = new MemoryStream();
-            memoryStream.Write(BitConverter.GetBytes((short)((Lenght / 65500) + 1)), 0, 2);
-            memoryStream.Write(bt, 0, bt.Length);
-            memoryStream.Position = 0;
-
-            while (Lenght > 0)
-            {
-                temp = new byte[65500];
-                memoryStream.Read(temp, 0, 65500);
-                msg.Add(temp);
-                Lenght -= 65500;                
-            }
-
-            return msg;
         }
 
         /// <summary>
@@ -148,16 +117,20 @@ namespace RS_Clinet
                 }
                 else
                 {
-                    msgBlockLength = udpSize - 5; // 5 - в данном случае первые 5 байтов
+                    msgBlockLength = udpSize - 7; // 5 - в данном случае первые 5 байтов
                 }
 
                 msgBlock[5] = BitConverter.GetBytes(msgBlockLength)[0];
                 msgBlock[6] = BitConverter.GetBytes(msgBlockLength)[1];
-                                
-                if (offset + udpSize - 5 > bt.Length)
+
+                if (i == countMsg - 1)
+                {
                     Array.Copy(bt, offset, msgBlock, 7, bt.Length - offset);
+                }
                 else
+                {
                     Array.Copy(bt, offset, msgBlock, 7, udpSize - 7);
+                }
 
                 chain.Add(msgBlock);
                 
@@ -171,8 +144,8 @@ namespace RS_Clinet
             return chain;
         }
 
-        /*  Описание протокола передачи поверх UDP
-            1 байт - контрольный пакет
+        /*  Описание протокола передачи LO поверх UDP
+            1 байт - контрольный пакет (1 если контрольный и 0 если не контрольный)
 
             Расположение байтов для контрольного пакета
             2 - 3 байт кодовый номер цепочки пакетов
