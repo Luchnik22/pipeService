@@ -1,0 +1,11 @@
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\bin\Debug\RS Srever.exe
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\bin\Debug\RS Srever.pdb
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\obj\x86\Debug\MainWindow.baml
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\obj\x86\Debug\MainWindow.g.cs
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\obj\x86\Debug\App.g.cs
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\obj\x86\Debug\RS Srever_MarkupCompile.cache
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\obj\x86\Debug\RS Srever.g.resources
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\obj\x86\Debug\RS_Srever.Properties.Resources.resources
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\obj\x86\Debug\RS Srever.csproj.GenerateResource.Cache
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\obj\x86\Debug\RS Srever.exe
+C:\Users\Luch\Desktop\TEMP\RS\RS Srever\obj\x86\Debug\RS Srever.pdb

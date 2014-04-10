@@ -1,0 +1,16 @@
+c:\users\oleg\documents\visual studio 2010\Projects\RS\RS Clinet\bin\Debug\ip.txt
+c:\users\oleg\documents\visual studio 2010\Projects\RS\RS Clinet\bin\Debug\RS Clinet.exe
+c:\users\oleg\documents\visual studio 2010\Projects\RS\RS Clinet\bin\Debug\RS Clinet.pdb
+c:\users\oleg\documents\visual studio 2010\Projects\RS\RS Clinet\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\oleg\documents\visual studio 2010\Projects\RS\RS Clinet\obj\x86\Debug\RS_Clinet.Properties.Resources.resources
+c:\users\oleg\documents\visual studio 2010\Projects\RS\RS Clinet\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\oleg\documents\visual studio 2010\Projects\RS\RS Clinet\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\oleg\documents\visual studio 2010\Projects\RS\RS Clinet\obj\x86\Debug\RS Clinet.exe
+c:\users\oleg\documents\visual studio 2010\Projects\RS\RS Clinet\obj\x86\Debug\RS Clinet.pdb
+C:\Users\Luch\Desktop\TEMP\RS\RS Clinet\obj\x86\Debug\RS Clinet.exe
+C:\Users\Luch\Desktop\TEMP\RS\RS Clinet\obj\x86\Debug\RS Clinet.pdb
+C:\Users\Luch\Desktop\TEMP\RS\RS Clinet\bin\Debug\ip.txt
+C:\Users\Luch\Desktop\TEMP\RS\RS Clinet\bin\Debug\RS Clinet.exe
+C:\Users\Luch\Desktop\TEMP\RS\RS Clinet\bin\Debug\RS Clinet.pdb
+C:\Users\Luch\Desktop\TEMP\RS\RS Clinet\obj\x86\Debug\RS_Clinet.Properties.Resources.resources
+C:\Users\Luch\Desktop\TEMP\RS\RS Clinet\obj\x86\Debug\RS Clinet.csproj.GenerateResource.Cache
